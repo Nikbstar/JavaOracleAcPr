@@ -1,7 +1,10 @@
 package ru.nik66.lessons.lesson1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class App {
 
@@ -19,6 +22,8 @@ public class App {
         final int MIN_AGE;
 
         // Использование static nested class
+        // Чтобы писать сокращенней (просто Color) можно сделать статический импорт
+        // в данном случае: import static ru.nik66.lessons.lesson1.Shape.Color;
         Shape.Color color = new Shape.Color(135, 35, 200);
         System.out.println(color);
 
@@ -49,15 +54,49 @@ public class App {
         });
         System.out.println(Arrays.toString(strings));
 
+        // Лямбда выражения
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Sveta");
+        stringList.add("Misha");
+        stringList.add("Sasha");
+        stringList.add("Masha");
+
+        stringList.sort(new Comparator<String>() {
+            @Override
+            public int compare(String s, String t1) {
+                return t1.compareTo(s);
+            }
+        });
+        // Меализация метода forEach для перебора элементов ArrayList'а
+        stringList.forEach(new Consumer<String>() {
+            @Override
+            // Каждый элемент помещается в s и с ним выполняется какте то действие
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        });
+
+        // То же самое с использованием лямбда выражений
+        // Если несколько строк кода, то они берутся в фигурные скобки
+        // Если строчка одна, то return добавляется автоматически
+        stringList.sort((a, b) -> a.compareTo(b));
+        // Если нужно только вызвать один метод, то можно просто указать этот метод в качестве реализации
+        stringList.forEach(System.out::println);
+
         // Enum
+        // Есть ссылочная переменная типа данных Day, и ее можно проинициализировать только ограниченным набором значений, которые являются константами.
         Day day1 = Day.MONDAY;
+        // Получить имя объекта enum
         System.out.println(day1.name());
-        System.out.println(day1);
+        // Обратное действие, получение объекта по имени
+        System.out.println(Day.valueOf("MONDAY").getNumber());
+        // Получаем день по номеру
+        System.out.println(Day.getDayByNumber(5));
+        System.out.println(Day.getDayByNumberOld(6));
         // Меняем состояние объекта
-        day1.setNumbet(2);
         System.out.println(day1);
-
-
+        day1.setNumber(2);
+        System.out.println(day1);
     }
 
 }

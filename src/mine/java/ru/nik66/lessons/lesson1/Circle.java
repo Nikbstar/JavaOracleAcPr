@@ -10,6 +10,9 @@ import lombok.ToString;
 @ToString
 public class Circle {
 
+    private Point center;
+    private int radius;
+
     // inner class
     @Getter
     @Setter
@@ -21,9 +24,6 @@ public class Circle {
         private int y;
 
     }
-
-    private Point center;
-    private int radius;
 
     public Circle(int x, int y, int radius) {
         setCenter(new Point(x, y));
