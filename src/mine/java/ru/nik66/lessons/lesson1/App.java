@@ -53,13 +53,11 @@ public class App {
             }
         });
         System.out.println(Arrays.toString(strings));
+        System.out.println("~~~~~~~~~~~~~~~~");
 
         // Лямбда выражения
-        List<String> stringList = new ArrayList<>();
-        stringList.add("Sveta");
-        stringList.add("Misha");
-        stringList.add("Sasha");
-        stringList.add("Masha");
+        // Перекидывать из обычного массива в ArrayList
+        List<String> stringList = new ArrayList<>(Arrays.asList(strings));
 
         stringList.sort(new Comparator<String>() {
             @Override
@@ -75,13 +73,25 @@ public class App {
                 System.out.println(s);
             }
         });
+        System.out.println("~~~~~~~~~~~~~~~~");
 
         // То же самое с использованием лямбда выражений
         // Если несколько строк кода, то они берутся в фигурные скобки
         // Если строчка одна, то return добавляется автоматически
+        // Для инта
+        stringList.sort((a, b) -> Integer.parseInt(b) - Integer.parseInt(a));
+        stringList.forEach(a -> System.out.println(a));
+        System.out.println("~~~~~~~~~~~~~~~~");
+        // Для стринга
         stringList.sort((a, b) -> a.compareTo(b));
+        // Второй вариант лямбда выражения (Ссылка на метод)
         // Если нужно только вызвать один метод, то можно просто указать этот метод в качестве реализации
         stringList.forEach(System.out::println);
+        System.out.println("~~~~~~~~~~~~~~~~");
+        // Для дабла
+        stringList.sort((a, b) -> Double.compare(Double.parseDouble(b), Double.parseDouble(a)));
+        stringList.forEach(System.out::println);
+        System.out.println("~~~~~~~~~~~~~~~~");
 
         // Enum
         // Есть ссылочная переменная типа данных Day, и ее можно проинициализировать только ограниченным набором значений, которые являются константами.
