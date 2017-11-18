@@ -62,13 +62,24 @@ public class App {
         findRegexInText(str, "\\b\\d{5}\\b").forEach(aa -> System.out.println("1)" + aa));
         // Найти все email'ы (каряво)
         findRegexInText(str, "[\\w\\.]+@[\\w\\.]+\\b").forEach(aa -> System.out.println("2)" + aa));
+        System.out.println("~~~~~~~~~~~~~~");
 
         // Группы
-        Pattern pattern1 = Pattern.compile("\\b(\\d{3})(\\d{3})(\\d{2})(\\d{2})");
+        Pattern pattern1 = Pattern.compile("\\b(?<code>\\d{3})(\\d{3})(\\d{2})(\\d{2})\\b");
         Matcher matcher = pattern1.matcher(str);
         while (matcher.find()) {
-            System.out.println(matcher.group(1));
+            // Печатаем группу 2
+            System.out.println(matcher.group(2));
+            // Печатаем группу с иметем code
+            System.out.println(matcher.group("code"));
         }
+        System.out.println(matcher.replaceAll("($1) $2-$3-$4"));
+        System.out.println("~~~~~~~~~~~~~~");
+
+        // Форматирование строк
+        String string = "Вы купили %2$d шт. %1$s за %3$.2f %4$s.";
+        String result = String.format(string, "рубашек", 4, 240.5, "руб");
+        System.out.println(result);
 
     }
 
