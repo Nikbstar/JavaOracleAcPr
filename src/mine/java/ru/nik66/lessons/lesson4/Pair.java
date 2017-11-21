@@ -5,12 +5,16 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-// Рекомендации: T - Type, E - Element, K - Key, V- Value, S, U - используются, если есть вторыеБ третьи и более типы.
+// Рекомендации: T - Type, E - Element, K - Key, V- Value, S, U - используются, если есть вторые, третьи и более типы.
 // Вместо T вставится любой тип, описанный при создании объекта
 public class Pair<T> {
 
-   private T key;
-   private T value;
+    private T key;
+    private T value;
 
+    // Везде подставляется "тип заполнитель", вместо которого подставится параметризирующий тип.
+    public Pair(T key, T value) {
+        this.key = key;
+        this.value = value;
+    }
 }

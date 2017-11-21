@@ -7,6 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+// Несколько ждинериков
 public class Human<T, S> {
 
     private String name;
@@ -17,6 +18,22 @@ public class Human<T, S> {
         this.name = name;
         this.age = age;
         this.sex = sex;
+    }
+
+    // Джинерик у метода
+    public<T> void print(T[] args) {
+        for (T arg : args) {
+            System.out.println(arg);
+        }
+    }
+
+    // ограничение джинериков до чисел
+    public<E extends Number> double sum(E[] args) {
+        double result = 0;
+        for (E arg : args) {
+            result += arg.doubleValue();
+        }
+        return result;
     }
 
     @Override
