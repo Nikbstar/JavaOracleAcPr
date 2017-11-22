@@ -10,19 +10,27 @@ public class App {
         Pair<String> pair1 = new Pair<>("first", "Kolya");
 
         // Несколько generic'ов
-        Human<Integer, Sex> human1 = new Human<>("Kolya", 25, Sex.MALE);
-        Human<String, String> human2 = new Human<>("Katya", "22", "female");
-
         // Могут быть параметризированные типы параметров
-        List<Human<Integer, Sex>> humanList = new ArrayList<>();
-        humanList.add(human1);
-        // Не подходит
-        //humanList.add(human2);
+        Human<Integer, Sex, Pair<String>> human1 = new Human<>("Kolya", 25, Sex.MALE);
+
+        List<Human<Integer, Sex, Pair<String>>> humans = new ArrayList<>();
+        humans.add(human1);
+
+        // вызов метода с джинериком.
+        // <String> серый, потому что его писать не обязательно.
+        System.out.println(human1.<String>print(new String[]{"1", "4", "2"}));
 
         // Raw type для совместимости с прдыдущими версиями JDK
-        Human human3 = new Human("Misga", "mama", 15);
+        // пользоваться raw type'ом не рекомендуется.
+        Human human2 = new Human("Misha", 44, 15);
+        // Так как на age стоит ограниение Number, строку в него записать нельзя.
+        //Human human2 = new Human("Misha", "mama", 15);
 
-        human1.<String>print(new String[] {"1", "2", "3"});
+        System.out.println(human1.compareHuman(human2));
+
+        // Если джинерики разные, то их нельзя уже будет сравнить, так как это уже будут два разных типа.
+        Human<Double, Sex, Pair<String>> human3 = new Human<>("Kolya", 25., Sex.MALE);
+        //System.out.println(human1.compareHuman(human3));
 
         // Wildcard
         calculate(new Demo<B>());
