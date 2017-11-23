@@ -30,29 +30,23 @@ public class App {
 
         // Если джинерики разные, то их нельзя уже будет сравнить, так как это уже будут два разных типа.
         Human<Double, Sex, Pair<String>> human3 = new Human<>("Kolya", 25., Sex.MALE);
-        //System.out.println(human1.compareHuman(human3));
-
-        // Wildcard
-        calculate(new Demo<B>());
-
-    }
-    //
-    // ? должне быть родителем по отношению к B.
-    public static void calculate(Demo<? super B> demo) {
+        System.out.println(human1.compareHuman(human3));
 
     }
 
 }
-
-class Demo<T> {
-
-}
-class A{
+class A {
 
 }
-class B extends A{
+class B<T> extends A {
 
 }
-class C extends B{
+// Подклассу обязательно надо тоже поставить джинерик суперкласса, чтобы он знал, какой тип отдать родителю.
+class C<T, U> extends B<T> {
+
+}
+// если у родителя не указать джинерики, то у него будут object типы, или можно вручную указать тип джинерика.
+// class D extends C<Integer, String> {
+class D extends C {
 
 }

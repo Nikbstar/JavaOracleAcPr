@@ -39,7 +39,8 @@ public class Human<T extends Number, S, U> {
     // делаем сравнение по age, для этого на типе age нужно сделать ограничение
     // T extends Nuvber - которое разрешит в T устанавливать только Number типы
     // и у age появится статический метод doubleValue().
-    public int compareHuman(Human<T, S, U> tsuHuman) {
+    // ? - wildcard говорит о том, что сюда можно подставить любой тип.
+    public int compareHuman(Human<?, S, U> tsuHuman) {
         return Double.compare (this.age.doubleValue(), tsuHuman.getAge().doubleValue());
     }
 
