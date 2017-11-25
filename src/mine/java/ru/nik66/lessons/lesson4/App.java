@@ -32,6 +32,13 @@ public class App {
         Human<Double, Sex, Pair<String>> human3 = new Human<>("Kolya", 25., Sex.MALE);
         System.out.println(human1.compareHuman(human3));
 
+        Buyer<String> buyer = new Buyer("Kolya", String.class);
+
+        // попытка дастать созданный массив приведет к эксепшину
+        //for (String s : buyer.getArray()) {
+        //    System.out.println(s);
+        //}
+
     }
 
 }
